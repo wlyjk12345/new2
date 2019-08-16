@@ -1,6 +1,8 @@
-import bs4
+
 from bs4 import BeautifulSoup
-html_doc = """
+import requests
+#import lxml
+'''html_doc = """
 
 <html><head><title>学习python的正确姿势</title></head>
 <body>
@@ -17,4 +19,14 @@ html_doc = """
 
 soup = BeautifulSoup(html_doc,'lxml')
 print(soup.a)
-#学习python的正确姿势
+#学习python的正确姿势   '''
+for page in range(0,10):
+    i = page * 25
+    url =  'https://movie.douban.com/top250?start=' + str(i) +  '&filter='
+    html =requests.get(url)
+    soup = BeautifulSoup(html.text, 'lxml')
+    #print(html.text)
+    list = soup.find_all('li')
+    for item in list:
+        item_name = item.find(class_='title').str
+        print(item_name)
