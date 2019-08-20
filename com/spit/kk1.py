@@ -21,7 +21,7 @@ def run_proc(a):
         get(i)
         end = time.time()
         print('Task  runs %0.2f seconds.' %  (end - start))
-
+        print('Now process %s .' % os.getpid())
 if __name__ == '__main__':  # 批量创建
     print('Parent process %s .' % os.getpid())
     p = Pool()  # 限制
